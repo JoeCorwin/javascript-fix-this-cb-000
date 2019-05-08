@@ -14,6 +14,9 @@ var cake = {
   }
 }
 
+// Make sure cake.decorate() works as expected. Hint: Remember that the callback 
+// to setTimeout also needs to be bound to the proper context. Think about using arrow functions with your setTimeout calls.
+
 var pie = {
   name: "Apple Pie",
   ingredients: ["apples", "flour", "eggs", "butter", "sugar"],
@@ -35,6 +38,9 @@ function makePie() {
   pie.decorate = cake.decorate.bind(pie);
   mix.call(pie, updatePieStatus);
 }
+
+// We don't yet have a way to decorate pies. Inside the makePie function, "borrow" the decorate function from cake 
+// and make it available to pie through pie.decorate() so it can be executed later.
 
 function updateStatus(statusText) {
   this.getElementsByClassName("status")[0].innerText = statusText
@@ -66,6 +72,12 @@ function cool(updateFunction) {
   }, 2000)
 }
 
+// For the bake, cool, and mix functions, make sure that the function for the next 
+// step (called inside setTimeout) is called with the correct context, 
+// and that the proper updateFunction is being called to update the status. 
+// You'll need to use call inside these functions to get the tests to pass. 
+// HINT: Remember what we said about setTimeout above?
+
 function makeDessert() {
   //add code here to decide which make... function to call
   //based on which link was clicked
@@ -75,6 +87,11 @@ function makeDessert() {
     makePie.call(this.parentNode)
   }
 }
+
+// Write your makeDessert function that will decide based on which link was 
+// clicked whether to makePie or makeCake. Hint: You shouldn't need to alter the 
+// code in the document.addEventListener block, but remember that events also set 
+// this when they are triggered from the DOM.
 
 function serve(message, customer) {
   //you shouldn't need to alter this function
